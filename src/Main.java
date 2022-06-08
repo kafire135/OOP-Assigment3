@@ -23,6 +23,6 @@ public class Main {
         Step up= new Up();
         up.step(warrior,gameBoard);
         System.out.println(warrior.position.getX()+" "+warrior.position.getY());
-        System.out.println(wall.position.getX()+" "+wall.position.getY()+" try");
+        System.out.println(wall.position.getX()+" "+wall.position.getY());
     }
 }
