@@ -33,7 +33,7 @@ public class Trap extends Enemy{
         }
         Tile player=gameBoard.findPlayer(this,2);
         if (player!=null){
-            player.combat(this,gameBoard);
+            player.combatEnemy(this,gameBoard);
         }
     }
 

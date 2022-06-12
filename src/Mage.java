@@ -31,7 +31,7 @@ public class Mage extends Player {
     @Override
     public void SpecialAbility(GameBoard gameBoard) {
         if(current_mana>= mana_cost){
-            current_mana = current_mana - mana_cost - level;
+            current_mana = current_mana - mana_cost;
             int hits=0;
             Tile enemy = gameBoard.findEnemy(this,ability_range);
             while(hits<hits_count & enemy!= null){

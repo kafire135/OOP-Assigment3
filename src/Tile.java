@@ -11,7 +11,7 @@ public abstract class Tile {
         this.position = position;
     }
 
-    public int comparTo(Tile other){
+    public int compareTo(Tile other){
         return position.comparTo(other.position);
     }
 

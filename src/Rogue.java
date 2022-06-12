@@ -52,4 +52,8 @@ public class Rogue extends Player{
     public String describe() {
         return null;
     }
+
+    public int getCurrent_energy() {
+        return current_energy;
+    }
 }

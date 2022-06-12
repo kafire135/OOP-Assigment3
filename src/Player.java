@@ -11,7 +11,7 @@ public abstract class Player extends Unit{
 
     public void playerTick(char input, GameBoard gameBoard){
         HashMap<Character,Step> stepHashMap = new HashMap<>();
-        stepHashMap.put('u',new Up());
+        stepHashMap.put('w',new Up());
         stepHashMap.put('s',new Down());
         stepHashMap.put('d',new Right());
         stepHashMap.put('a',new Left());
