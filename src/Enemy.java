@@ -36,4 +36,12 @@ public abstract class Enemy extends Unit{
     }
 
     public abstract String describe();
+    public abstract void enemyTick(GameBoard gameBoard);
+    public void playerTick(char step, GameBoard gameBoard){
+
+    }
+
+    public boolean canYouAttackMe(Enemy enemy) {
+        return false;
+    }
 }

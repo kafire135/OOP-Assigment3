@@ -14,8 +14,9 @@ public class Monster extends Enemy{
         return null;
     }
 
-    public void travel(Player player, GameBoard gameBoard){
-        if(position.distance(player.position)<vision_range){
+    public void enemyTick(GameBoard gameBoard){
+        Tile player = gameBoard.findPlayer(this,vision_range);
+        if(player!=null){
             int dx = position.getX()-player.position.getX();
             int dy = position.getY()-player.position.getY();
             if(Math.abs(dx)>Math.abs(dy)){

@@ -39,4 +39,23 @@ public class Position{
         return Math.sqrt(temp);
     }
 
+    public int comparTo(Position other){
+        if(y>other.y){
+            return 1;
+        }
+        else if (y<other.y){
+            return -1;
+        }
+        else {
+            if (x>other.x){
+                return 1;
+            }
+            else if (x<other.x){
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        }
+    }
 }

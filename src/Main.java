@@ -14,7 +14,7 @@ public class Main {
         tiles.addLast(empty1);
         tiles.addLast(wall);
         GameBoard gameBoard=new GameBoard(tiles);
-        ((Monster)monster).travel((Player) warrior,gameBoard);
+        ((Monster)monster).enemyTick(gameBoard);
         System.out.println(warrior.position.getX() + " " + warrior.position.getY());
         System.out.println(monster.position.getX() + " " + monster.position.getY());
         System.out.println(warrior.getHealth_amount());

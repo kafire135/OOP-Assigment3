@@ -35,6 +35,11 @@ public class Wall extends Tile{
     }
 
     @Override
+    public boolean canYouAttackMe(Enemy enemy) {
+        return false;
+    }
+
+    @Override
     public void SpecialAbility(GameBoard gameBoard) {
 
     }
@@ -77,5 +82,15 @@ public class Wall extends Tile{
     @Override
     public int getExperience() {
         return 0;
+    }
+
+    @Override
+    public void playerTick(char step, GameBoard gameBoard) {
+
+    }
+
+    @Override
+    public void enemyTick(GameBoard gameBoard) {
+
     }
 }

@@ -51,4 +51,27 @@ public class GameBoard {
         }
         return null;
     }
+
+    public Tile findPlayer(Enemy enemy, int range){
+        for (Tile tile: tiles){
+            if (tile.position.distance(enemy.position)<range){
+                if (tile.canYouAttackMe(enemy)){
+                    return tile;
+                }
+            }
+        }
+        return null;
+    }
+
+    public LinkedList<Tile> findAllEnemy(Player player, int range){
+        LinkedList<Tile> output = new LinkedList<>();
+        for (Tile tile: tiles){
+            if (tile.position.distance(player.position)<range){
+                if (tile.canYouAttackMe(player)){
+                    output.addLast(tile);
+                }
+            }
+        }
+        return output;
+    }
 }
