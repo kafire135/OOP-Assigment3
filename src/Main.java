@@ -14,21 +14,11 @@ public class Main {
         tiles.addLast(empty1);
         tiles.addLast(wall);
         GameBoard gameBoard=new GameBoard(tiles);
-//        Step left=new Left();
-//        Step right=new Right();
-//        right.step(warrior,gameBoard);
-//        System.out.println(warrior.position.getX()+" "+warrior.position.getY());
-//        System.out.println(empty.position.getX()+" "+empty.position.getY());
-//        left.step(warrior,gameBoard);
-//        System.out.println(warrior.position.getX()+" "+warrior.position.getY());
-//        System.out.println(empty.position.getX()+" "+empty.position.getY());
-//        Step up= new Up();
-//        up.step(warrior,gameBoard);
-//        System.out.println(warrior.position.getX()+" "+warrior.position.getY());
-//        System.out.println(wall.position.getX()+" "+wall.position.getY()+" try3");
-        Step down=new Down();
-        down.step(monster,gameBoard);
-        System.out.println(monster.position.getX()+" "+monster.position.getY());
-        System.out.println(empty1.position.getX()+" "+empty1.position.getY());
+        Step left=new Left();
+        left.step(warrior,gameBoard);
+        System.out.println(warrior.position.getX() + " " + warrior.position.getY());
+        System.out.println(monster.position.getX() + " " + monster.position.getY());
+        System.out.println();
+
     }
 }
