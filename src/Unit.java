@@ -17,7 +17,6 @@ public abstract class Unit extends Tile{
         this.experience=experience;
     }
 
-
     @Override
     public void moveTo(Tile other, GameBoard gameBoard) {
         other.moveFowardMe(this, gameBoard);
@@ -26,6 +25,30 @@ public abstract class Unit extends Tile{
     @Override
     public void moveFowardMe(Unit unit, GameBoard gameBoard) {
         unit.combat(this,gameBoard);
+    }
+
+
+    public abstract String describe();
+    public abstract void combat(Unit unit, GameBoard gameBoard);
+    public abstract void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability);
+    public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard);
+    public abstract boolean canYouAttackMe(Player player);
+    public abstract int specialAbilityPower();
+    public abstract void SpecialAbility(GameBoard gameBoard);
+    public abstract String getSpecialAbility();
+    public abstract void updateSpecialAbility();
+    public static void combat (Unit attacker, Unit defender, boolean special_ability){
+        int attack_Roll;
+        if (special_ability){
+            attack_Roll=attacker.specialAbilityPower();
+        }
+        else {
+            attack_Roll = (int) (Math.random() * (attacker.attack_points + 1));
+        }
+        int defend_Roll = (int)(Math.random()*(defender.defense_points+1));
+        int damage = Math.max((attack_Roll-defend_Roll),0);
+        System.out.println("attack= " + attack_Roll + " defence= " + defend_Roll + " damage= " + damage);
+        defender.health_amount=defender.health_amount-damage;
     }
 
     public String getName() {
@@ -50,28 +73,5 @@ public abstract class Unit extends Tile{
 
     public int getExperience() {
         return experience;
-    }
-
-    public abstract String describe();
-    public abstract void combat(Unit unit, GameBoard gameBoard);
-    public abstract void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability);
-    public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard);
-    public abstract boolean canYouAttackMe(Player player);
-    public abstract int specialAbilityPower();
-    public abstract void SpecialAbility(GameBoard gameBoard);
-    public abstract String getSpecialAbility();
-    public abstract void updateSpecialAbility();
-    public static void combat (Unit attacker, Unit defender, boolean special_ability){
-        int attack_Roll;
-        if (special_ability){
-            attack_Roll=attacker.specialAbilityPower();
-        }
-        else {
-            attack_Roll = (int) (Math.random() * (attacker.attack_points + 1));
-        }
-        int defend_Roll = (int)(Math.random()*(defender.defense_points+1));
-        int damage = Math.max((attack_Roll-defend_Roll),0);
-        System.out.println("attack= " + attack_Roll + " defence= " + defend_Roll + " damage= " + damage);
-        defender.health_amount=defender.health_amount-damage;
     }
 }

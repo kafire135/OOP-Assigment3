@@ -37,6 +37,12 @@ public abstract class Tile {
     public abstract void SpecialAbility(GameBoard gameBoard);
     public abstract String getSpecialAbility();
     public abstract void updateSpecialAbility();
+    public abstract String getName();
+    public abstract int getHealth_pool();
+    public abstract int getHealth_amount();
+    public abstract int getAttack_points();
+    public abstract int getDefense_points();
+    public abstract int getExperience();
 
     @Override
     public boolean equals(Object o) {

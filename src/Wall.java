@@ -48,4 +48,34 @@ public class Wall extends Tile{
     public void updateSpecialAbility() {
 
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public int getHealth_pool() {
+        return 0;
+    }
+
+    @Override
+    public int getHealth_amount() {
+        return 0;
+    }
+
+    @Override
+    public int getAttack_points() {
+        return 0;
+    }
+
+    @Override
+    public int getDefense_points() {
+        return 0;
+    }
+
+    @Override
+    public int getExperience() {
+        return 0;
+    }
 }
