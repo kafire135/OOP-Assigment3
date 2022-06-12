@@ -32,12 +32,12 @@ public class GameBoard {
 
     }
 
-    public void removeEnemy(Enemy enemy, Player player){
-        for (Tile tile: tiles){
-            if (tile.equals(enemy)){
-                tile=new Empty(tile.position);
-                replace(tile,player);
-            }
+    public void removeEnemy(Enemy enemy, Player player,boolean specialAbility){
+        Tile empty=new Empty(enemy.position);
+        tiles.remove(enemy);
+        tiles.addLast(empty);
+        if (!specialAbility) {
+            replace(empty, player);
         }
     }
 

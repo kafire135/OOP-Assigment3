@@ -10,8 +10,8 @@ public abstract class Enemy extends Unit{
     public void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability){
         Unit.combat(player,this,special_ability);
         if(health_amount<=0){
-            player.experience=player.experience+this.experience;
-            gameBoard.removeEnemy(this,player);
+            player.increaseExperience(experience);
+            gameBoard.removeEnemy(this,player,special_ability);
             player.checkLevelUp();
         }
     }

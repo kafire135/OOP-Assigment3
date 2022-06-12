@@ -10,13 +10,13 @@ public class Warrior extends Player{
     }
 
     public void checkLevelUp(){
-        remaining_cooldown=0;
-        level=level+1;
-        experience=experience-(50*level);
-        health_pool=health_pool+(15*level);
-        health_amount=health_pool;
-        attack_points=attack_points+(6*level);
-        defense_points=defense_points+(2*level);
+        if(experience>=50*level) {
+            super.checkLevelUp();
+            remaining_cooldown = 0;
+            health_pool = health_pool + (5 * level);
+            attack_points = attack_points + (2 * level);
+            defense_points = defense_points + level;
+        }
     }
 
     @Override
@@ -50,5 +50,13 @@ public class Warrior extends Player{
     @Override
     public String describe() {
         return null;
+    }
+
+    public int getAbility_cooldown() {
+        return ability_cooldown;
+    }
+
+    public int getRemaining_cooldown() {
+        return remaining_cooldown;
     }
 }

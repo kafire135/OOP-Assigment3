@@ -35,6 +35,10 @@ public abstract class Player extends Unit{
             tile='X';//game over
         }
     }
+
+    public void increaseExperience(int otherExperience){
+        experience=experience+otherExperience;
+    }
     public boolean canYouAttackMe(Player player) {
         return false;
     }
