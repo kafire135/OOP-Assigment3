@@ -2,17 +2,20 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.stream.*;
 
 public class GameController {
 
-    private TileFactory tileFactory;
+    private final TileFactory tileFactory;
+    private final String levels_dir;
 
 
-    public GameController(TileFactory tileFactory) {
+    public GameController(TileFactory tileFactory, String path) {
         this.tileFactory = tileFactory;
+        levels_dir=path;
     }
 
     public void selectPlayer(){
@@ -35,7 +38,7 @@ public class GameController {
         } catch (FileNotFoundException e) {
             System.out.println ("File not found " + path);
         } catch (IOException e) {
-            System.out.println(e.getMessage() + "\n" + e.getStackTrace());
+            System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
         }
         return lines;
     }
@@ -77,7 +80,7 @@ public class GameController {
     public void startGame(){
         Scanner input = new Scanner(System.in);
         for (int i = 1; i <=4 ; i++) {
-            GameBoard gameBoard=buildBoard("C:\\Users\\kfir1\\IdeaProjects\\OOP-Assigment3\\levels_dir\\level"+i);
+            GameBoard gameBoard=buildBoard(levels_dir+"\\level"+i);
             gameBoard.setTiles(gameBoard.getTiles().stream().sorted(Tile::compareTo)
                     .collect(Collectors.toCollection(LinkedList::new)));
             gameBoard.printGameBoard();
