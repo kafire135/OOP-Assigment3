@@ -67,6 +67,7 @@ public abstract class Player extends Unit{
     public abstract String getSpecialAbility();
     public abstract void updateSpecialAbility();
     public abstract String describe();
+    public abstract Tile copy();
     public void enemyTick(GameBoard gameBoard){
 
     }

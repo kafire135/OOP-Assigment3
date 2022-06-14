@@ -11,10 +11,9 @@ public abstract class Tile {
         this.position = position;
     }
 
-    public int compareTo(Tile other){
-        return position.comparTo(other.position);
+    public int compareTo(Tile tile2){
+        return position.compareTo(tile2.position);
     }
-
 
     public char getTile() {
         return tile;
@@ -50,6 +49,7 @@ public abstract class Tile {
     public abstract int getExperience();
     public abstract void playerTick(char step, GameBoard gameBoard);
     public abstract void enemyTick(GameBoard gameBoard);
+    public abstract Tile copy();
 
     @Override
     public boolean equals(Object o) {

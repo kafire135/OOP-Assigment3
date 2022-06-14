@@ -51,4 +51,9 @@ public class Monster extends Enemy{
         }
     }
 
+    @Override
+    public Tile copy() {
+        return new Monster(tile,position,name,health_pool,attack_points,defense_points,experience,vision_range);
+    }
+
 }

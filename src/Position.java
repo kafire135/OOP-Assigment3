@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Position{
+public class Position implements Comparable<Position>{
     private int x;
     private int y;
 
@@ -39,18 +39,18 @@ public class Position{
         return Math.sqrt(temp);
     }
 
-    public int comparTo(Position other){
-        if(y>other.y){
+    public int compareTo(Position p2){
+        if(y>p2.y){
             return 1;
         }
-        else if (y<other.y){
+        else if (y<p2.y){
             return -1;
         }
         else {
-            if (x>other.x){
+            if (x>p2.x){
                 return 1;
             }
-            else if (x<other.x){
+            else if (x<p2.x){
                 return -1;
             }
             else {

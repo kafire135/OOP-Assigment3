@@ -6,7 +6,6 @@ public class TileFactory {
     private Player selected;
 
     public TileFactory(){
-        selected=null;
         playersList = initPlayers();
         tileList = initTiles();
     }
@@ -38,10 +37,13 @@ public class TileFactory {
         tiles.put('B',new Trap('B',new Position(0,0), "Bonus Trap", 1, 1, 1, 250,  1, 10));
         tiles.put('Q',new Trap('Q',new Position(0,0), "Queen's Trap", 250, 50, 10, 100, 3, 10));
         tiles.put('D',new Trap('D',new Position(0,0), "Death Trap", 500, 100, 20, 250, 1, 10));
-        tiles.put('@',selected);
         tiles.put('.',new Empty(new Position(0,0)));
         tiles.put('#',new Wall(new Position(0,0)));
         return tiles;
+    }
+    public void addPlayerToTileList(int option){
+        selected=playersList.get(option);
+        tileList.put('@',selected);
     }
 
     public HashMap<Integer, Player> getPlayersList() {
@@ -62,7 +64,11 @@ public class TileFactory {
 
     public Tile createTile(char option){
         try {
-            return tileList.get(option);
+            Tile tile=tileList.get(option);
+            if (tile.tile=='@'){
+                return tile;
+            }
+            return tile.copy();
         }
         catch (Exception e){
             return null;

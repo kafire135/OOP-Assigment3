@@ -37,6 +37,7 @@ public abstract class Enemy extends Unit{
 
     public abstract String describe();
     public abstract void enemyTick(GameBoard gameBoard);
+    public abstract Tile copy();
     public void playerTick(char step, GameBoard gameBoard){
 
     }

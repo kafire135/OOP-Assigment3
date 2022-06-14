@@ -93,4 +93,9 @@ public class Wall extends Tile{
     public void enemyTick(GameBoard gameBoard) {
 
     }
+
+    @Override
+    public Tile copy() {
+        return new Wall(position);
+    }
 }

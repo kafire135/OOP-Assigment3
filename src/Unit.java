@@ -40,6 +40,7 @@ public abstract class Unit extends Tile{
     public abstract void updateSpecialAbility();
     public abstract void playerTick(char step, GameBoard gameBoard);
     public abstract void enemyTick(GameBoard gameBoard);
+    public abstract Tile copy();
     public static void combat (Unit attacker, Unit defender, boolean special_ability){
         int attack_Roll;
         if (special_ability){

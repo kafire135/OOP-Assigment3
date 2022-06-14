@@ -2,15 +2,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.*;
 
 public class GameController {
 
     private final TileFactory tileFactory;
-    private final String levels_dir;
+    public final String levels_dir;
 
 
     public GameController(TileFactory tileFactory, String path) {
@@ -20,11 +18,24 @@ public class GameController {
 
     public void selectPlayer(){
         Scanner input = new Scanner(System.in);
-        int option=input.nextInt();
-        while (option<1 || option>tileFactory.getPlayersList().size()){
-            option=input.nextInt();
+        String option=input.nextLine();
+        while (!checkPlayerInput(option)){
+            option=input.nextLine();
         }
-        tileFactory.setSelected(tileFactory.getPlayersList().get(option));
+        tileFactory.addPlayerToTileList(Integer.parseInt(option));
+    }
+
+    public boolean checkPlayerInput(String option){
+        try{
+            int output= Integer.parseInt(option);
+            if (output<1 || output>tileFactory.getPlayersList().size()){
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
     private LinkedList<String> readAllLines(String path) {
@@ -46,6 +57,9 @@ public class GameController {
     public GameBoard buildBoard(String path){
         LinkedList<Tile> tiles =new LinkedList<>();
         LinkedList<String> lines = readAllLines(path);
+        int length = lines.size();
+        int width = lines.get(0).length();
+        int enemyCount=0;
         for (int i = 0; i < lines.size() ; i++) {
             String line = lines.get(i);
             for (int j = 0; j < line.length(); j++) {
@@ -53,13 +67,14 @@ public class GameController {
                 if (tile==null){
                     throw new IllegalArgumentException("illegal file");
                 }
-                tile.position=new Position(i,j);
+                tile.setPosition(new Position(j,i));
                 tiles.addLast(tile);
+                if(tile.tile!='.' && tile.tile!='@' && tile.tile!='#'){
+                    enemyCount++;
+                }
             }
         }
-        int length = lines.size();
-        int width = lines.getFirst().length();
-        return new GameBoard(tiles,length,width);
+        return new GameBoard(tiles,length,width,enemyCount);
     }
 
     public boolean playersAndEnemiesOnTheBoard(GameBoard gameBoard){
@@ -80,18 +95,22 @@ public class GameController {
     public void startGame(){
         Scanner input = new Scanner(System.in);
         for (int i = 1; i <=4 ; i++) {
-            GameBoard gameBoard=buildBoard(levels_dir+"\\level"+i);
-            gameBoard.setTiles(gameBoard.getTiles().stream().sorted(Tile::compareTo)
-                    .collect(Collectors.toCollection(LinkedList::new)));
+            GameBoard gameBoard=buildBoard(levels_dir+"\\level"+i+".txt");
+            LinkedList <Tile> tiles;
+            tiles = gameBoard.getTiles().stream().sorted(Tile::compareTo)
+                    .collect(Collectors.toCollection(LinkedList::new));
+            gameBoard.setTiles(tiles);
             gameBoard.printGameBoard();
             while (playersAndEnemiesOnTheBoard(gameBoard)){
                 String option=input.nextLine();
                 Character step = legalStep(option);
                 if (step!=null){
-                    gameBoard.getTiles().forEach((tile) -> tile.playerTick(step,gameBoard));
+//                    gameBoard.getTiles().forEach((tile) -> tile.playerTick(step,gameBoard));
+                    tileFactory.getSelected().playerTick(step,gameBoard);
                     gameBoard.getTiles().forEach((tile) -> tile.enemyTick(gameBoard));
-                    gameBoard.setTiles(gameBoard.getTiles().stream().sorted(Tile::compareTo)
-                            .collect(Collectors.toCollection(LinkedList::new)));
+                    tiles = gameBoard.getTiles().stream().sorted(Tile::compareTo)
+                            .collect(Collectors.toCollection(LinkedList::new));
+                    gameBoard.setTiles(tiles);
                     gameBoard.printGameBoard();
                 }
             }

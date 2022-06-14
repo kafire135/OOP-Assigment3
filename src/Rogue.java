@@ -53,6 +53,11 @@ public class Rogue extends Player{
         return null;
     }
 
+    @Override
+    public Tile copy() {
+        return new Rogue(position,name,health_pool,attack_points,defense_points,cost);
+    }
+
     public int getCurrent_energy() {
         return current_energy;
     }

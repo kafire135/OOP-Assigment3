@@ -61,6 +61,11 @@ public class Mage extends Player {
         return null;
     }
 
+    @Override
+    public Tile copy() {
+        return new Mage(position,name,health_pool,attack_points,defense_points,mana_pool,mana_cost,spell_power,hits_count,ability_range);
+    }
+
     public int getMana_pool() {
         return mana_pool;
     }

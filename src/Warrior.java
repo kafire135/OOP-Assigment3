@@ -52,6 +52,11 @@ public class Warrior extends Player{
         return null;
     }
 
+    @Override
+    public Tile copy() {
+        return new Warrior(position,name,health_pool,attack_points,defense_points,ability_cooldown);
+    }
+
     public int getAbility_cooldown() {
         return ability_cooldown;
     }

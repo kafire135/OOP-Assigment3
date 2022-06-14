@@ -39,6 +39,11 @@ public class Trap extends Enemy{
     }
 
     @Override
+    public Tile copy() {
+        return new Trap(tile,position,name,health_pool,attack_points,defense_points,experience,visibility_time,invisibility_time);
+    }
+
+    @Override
     public String describe() {
         return null;
     }
