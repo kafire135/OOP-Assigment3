@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.stream.*;
@@ -20,8 +24,39 @@ public class GameController {
         tileFactory.setSelected(tileFactory.getPlayersList().get(option));
     }
 
-    public GameBoard buildBoard(){
-        return null;
+    private LinkedList<String> readAllLines(String path) {
+        LinkedList<String> lines = new LinkedList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String next;
+            while ((next = reader.readLine()) != null) {
+                lines.addLast(next);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println ("File not found " + path);
+        } catch (IOException e) {
+            System.out.println(e.getMessage() + "\n" + e.getStackTrace());
+        }
+        return lines;
+    }
+
+    public GameBoard buildBoard(String path){
+        LinkedList<Tile> tiles =new LinkedList<>();
+        LinkedList<String> lines = readAllLines(path);
+        for (int i = 0; i < lines.size() ; i++) {
+            String line = lines.get(i);
+            for (int j = 0; j < line.length(); j++) {
+                Tile tile= tileFactory.createTile(line.charAt(j));
+                if (tile==null){
+                    throw new IllegalArgumentException("illegal file");
+                }
+                tile.position=new Position(i,j);
+                tiles.addLast(tile);
+            }
+        }
+        int length = lines.size();
+        int width = lines.getFirst().length();
+        return new GameBoard(tiles,length,width);
     }
 
     public boolean playersAndEnemiesOnTheBoard(GameBoard gameBoard){
@@ -42,7 +77,7 @@ public class GameController {
     public void startGame(){
         Scanner input = new Scanner(System.in);
         for (int i = 1; i <=4 ; i++) {
-            GameBoard gameBoard=buildBoard();
+            GameBoard gameBoard=buildBoard("C:\\Users\\kfir1\\IdeaProjects\\OOP-Assigment3\\levels_dir\\level"+i);
             gameBoard.setTiles(gameBoard.getTiles().stream().sorted(Tile::compareTo)
                     .collect(Collectors.toCollection(LinkedList::new)));
             gameBoard.printGameBoard();

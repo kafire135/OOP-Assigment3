@@ -1,16 +1,21 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class GameBoard {
+    private int length;
+    private int width;
     private LinkedList <Tile> tiles;
     private int enemiesCount;
     private boolean livingPlayer;
 
-    public GameBoard (LinkedList<Tile> tiles)
+    public GameBoard (LinkedList<Tile> tiles, int length, int width)
     {
         this.tiles=tiles;
         enemiesCount=0;
         livingPlayer=true;
+        this.length=length;
+        this.width=width;
     }
 
     public LinkedList<Tile> getTiles() {
@@ -82,7 +87,13 @@ public class GameBoard {
     }
 
     public void printGameBoard(){
-
+        Iterator<Tile> iterator = tiles.iterator();
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.print(iterator.next().tile+ " ");
+            }
+            System.out.println();
+        }
     }
 
     public boolean isLivingPlayer() {
