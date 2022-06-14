@@ -16,24 +16,25 @@ public class Trap extends Enemy{
     }
 
     public void enemyTick(GameBoard gameBoard){
-        ticks_count++;
-        if (visible){
-            if(ticks_count==visibility_time){
-                ticks_count=0;
-                tile='.';
-                visible=false;
+        if (gameBoard.isLivingPlayer()) {
+            ticks_count++;
+            if (visible) {
+                if (ticks_count == visibility_time) {
+                    ticks_count = 0;
+                    tile = '.';
+                    visible = false;
+                }
+            } else {
+                if (ticks_count == invisibility_time) {
+                    ticks_count = 0;
+                    tile = visualChar;
+                    visible = true;
+                }
             }
-        }
-        else {
-            if(ticks_count==invisibility_time){
-                ticks_count=0;
-                tile=visualChar;
-                visible=true;
+            Tile player = gameBoard.findPlayer(this, 2);
+            if (player != null) {
+                player.combatEnemy(this, gameBoard);
             }
-        }
-        Tile player=gameBoard.findPlayer(this,2);
-        if (player!=null){
-            player.combatEnemy(this,gameBoard);
         }
     }
 

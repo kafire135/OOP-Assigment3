@@ -51,7 +51,7 @@ public abstract class Unit extends Tile{
         int defend_Roll = (int)(Math.random()*(defender.defense_points+1));
         int damage = Math.max((attack_Roll-defend_Roll),0);
         System.out.println("attack= " + attack_Roll + " defense= " + defend_Roll + " damage= " + damage);
-        defender.health_amount=defender.health_amount-damage;
+        defender.health_amount=Math.max((defender.health_amount-damage),0);
     }
 
     public String getName() {

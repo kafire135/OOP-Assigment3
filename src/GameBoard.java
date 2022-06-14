@@ -3,9 +3,14 @@ import java.util.NoSuchElementException;
 
 public class GameBoard {
     private LinkedList <Tile> tiles;
+    private int enemiesCount;
+    private boolean livingPlayer;
 
-    public GameBoard (LinkedList<Tile> tiles){
+    public GameBoard (LinkedList<Tile> tiles)
+    {
         this.tiles=tiles;
+        enemiesCount=0;
+        livingPlayer=true;
     }
 
     public LinkedList<Tile> getTiles() {
@@ -39,6 +44,7 @@ public class GameBoard {
         if (!specialAbility) {
             replace(empty, player);
         }
+        decreaseEnemyCount();
     }
 
     public Tile findEnemy(Player player, int range){
@@ -73,5 +79,25 @@ public class GameBoard {
             }
         }
         return output;
+    }
+
+    public void printGameBoard(){
+
+    }
+
+    public boolean isLivingPlayer() {
+        return livingPlayer;
+    }
+
+    public void setLivingPlayer(boolean livingPlayer) {
+        this.livingPlayer = livingPlayer;
+    }
+
+    public int getEnemiesCount() {
+        return enemiesCount;
+    }
+
+    public void decreaseEnemyCount(){
+        enemiesCount--;
     }
 }

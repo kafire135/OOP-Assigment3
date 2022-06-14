@@ -47,6 +47,7 @@ public abstract class Player extends Unit{
         Unit.combat(enemy,this,false);
         if(health_amount<=0){
             tile='X';//game over
+            gameBoard.setLivingPlayer(false);
         }
     }
 
