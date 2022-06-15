@@ -32,8 +32,6 @@ public abstract class Unit extends Tile{
     public abstract void combat(Unit unit, GameBoard gameBoard);
     public abstract void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability);
     public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard);
-    public abstract boolean canYouAttackMe(Player player);
-    public abstract boolean canYouAttackMe(Enemy enemy);
     public abstract int specialAbilityPower();
     public abstract void SpecialAbility(GameBoard gameBoard);
     public abstract String getSpecialAbility();
@@ -51,7 +49,7 @@ public abstract class Unit extends Tile{
         }
         int defend_Roll = (int)(Math.random()*(defender.defense_points+1));
         int damage = Math.max((attack_Roll-defend_Roll),0);
-        System.out.println("attack= " + attack_Roll + " defense= " + defend_Roll + " damage= " + damage);
+        System.out.println("attack= " + attack_Roll + " defense= " + defend_Roll + " damage= " + damage + " health= " + defender.health_amount);
         defender.health_amount=Math.max((defender.health_amount-damage),0);
     }
 

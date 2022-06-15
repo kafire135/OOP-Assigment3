@@ -54,14 +54,6 @@ public abstract class Player extends Unit{
     public void increaseExperience(int otherExperience){
         experience=experience+otherExperience;
     }
-    public boolean canYouAttackMe(Player player) {
-        return false;
-    }
-
-    public boolean canYouAttackMe(Enemy enemy) {
-        return true;
-    }
-
     public abstract void SpecialAbility(GameBoard gameBoard);
     public abstract int specialAbilityPower();
     public abstract String getSpecialAbility();
@@ -71,7 +63,4 @@ public abstract class Player extends Unit{
     public void enemyTick(GameBoard gameBoard){
 
     }
-
-
-
 }

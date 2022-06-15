@@ -30,16 +30,6 @@ public class Wall extends Tile{
     }
 
     @Override
-    public boolean canYouAttackMe(Player player) {
-        return false;
-    }
-
-    @Override
-    public boolean canYouAttackMe(Enemy enemy) {
-        return false;
-    }
-
-    @Override
     public void SpecialAbility(GameBoard gameBoard) {
 
     }
@@ -52,36 +42,6 @@ public class Wall extends Tile{
     @Override
     public void updateSpecialAbility() {
 
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public int getHealth_pool() {
-        return 0;
-    }
-
-    @Override
-    public int getHealth_amount() {
-        return 0;
-    }
-
-    @Override
-    public int getAttack_points() {
-        return 0;
-    }
-
-    @Override
-    public int getDefense_points() {
-        return 0;
-    }
-
-    @Override
-    public int getExperience() {
-        return 0;
     }
 
     @Override

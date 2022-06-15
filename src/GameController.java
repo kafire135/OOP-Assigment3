@@ -74,7 +74,7 @@ public class GameController {
                 }
             }
         }
-        return new GameBoard(tiles,length,width,enemies);
+        return new GameBoard(tiles,length,width,enemies,tileFactory.getSelected());
     }
 
     public boolean playersAndEnemiesOnTheBoard(GameBoard gameBoard){
@@ -94,6 +94,7 @@ public class GameController {
 
     public void startGame(){
         Scanner input = new Scanner(System.in);
+        boolean deadPlayer=false;
         for (int i = 1; i <=4 ; i++) {
             GameBoard gameBoard=buildBoard(levels_dir+"\\level"+i+".txt");
             LinkedList <Tile> tiles;
@@ -116,8 +117,12 @@ public class GameController {
             }
             if(!gameBoard.isLivingPlayer()){
                 System.out.println("GAME OVER");//replace with final massage
+                deadPlayer=true;
+                break;
             }
         }
-        System.out.println("YOU WON!!!");//replace with final massage
+        if(!deadPlayer) {
+            System.out.println("YOU WON!!!");//replace with final massage
+        }
     }
 }

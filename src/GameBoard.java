@@ -7,12 +7,14 @@ public class GameBoard {
     private int width;
     private LinkedList <Tile> tiles;
     private LinkedList <Tile> enemies;
+    Tile player;
     private boolean livingPlayer;
 
-    public GameBoard (LinkedList<Tile> tiles, int length, int width, LinkedList<Tile> enemies)
+    public GameBoard (LinkedList<Tile> tiles, int length, int width, LinkedList<Tile> enemies, Tile player)
     {
         this.tiles=tiles;
         this.enemies=enemies;
+        this.player=player;
         livingPlayer=true;
         this.length=length;
         this.width=width;
@@ -46,7 +48,6 @@ public class GameBoard {
         Tile empty=new Empty(enemy.position);
         tiles.remove(enemy);
         tiles.addLast(empty);
-//        enemy = new Empty(enemy.position);
         if (!specialAbility) {
             replace(empty, player);
         }
@@ -54,34 +55,38 @@ public class GameBoard {
     }
 
     public Tile findEnemy(Player player, int range){
-        for (Tile tile: tiles){
+        for (Tile tile: enemies){
             if (tile.position.distance(player.position)<range){
-               if (tile.canYouAttackMe(player)){
-                   return tile;
-               }
+                return tile;
             }
         }
         return null;
     }
 
     public Tile findPlayer(Enemy enemy, int range){
-        for (Tile tile: tiles){
-            if (tile.position.distance(enemy.position)<range){
-                if (tile.canYouAttackMe(enemy)){
-                    return tile;
-                }
+            if (player.position.distance(enemy.position)<range){
+                    return player;
+            }
+        return null;
+    }
+
+    public Tile findClosestEnemy(Player player, int range){
+        double minRange=range;
+        Tile output=null;
+        for (Tile tile: enemies){
+            if (tile.position.distance(player.position)<minRange){
+                output = tile;
+                minRange = tile.position.distance(player.position);
             }
         }
-        return null;
+        return output;
     }
 
     public LinkedList<Tile> findAllEnemy(Player player, int range){
         LinkedList<Tile> output = new LinkedList<>();
-        for (Tile tile: tiles){
+        for (Tile tile: enemies){
             if (tile.position.distance(player.position)<range){
-                if (tile.canYouAttackMe(player)){
-                    output.addLast(tile);
-                }
+                output.addLast(tile);
             }
         }
         return output;
@@ -91,7 +96,7 @@ public class GameBoard {
         Iterator<Tile> iterator = tiles.iterator();
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(iterator.next().tile+ " ");
+                System.out.print(iterator.next().tile);
             }
             System.out.println();
         }

@@ -27,9 +27,6 @@ public abstract class Enemy extends Unit{
     public void updateSpecialAbility(){
 
     }
-    public boolean canYouAttackMe(Player player) {
-        return true;
-    }
 
     public int specialAbilityPower(){
         return 0;
@@ -42,7 +39,4 @@ public abstract class Enemy extends Unit{
 
     }
 
-    public boolean canYouAttackMe(Enemy enemy) {
-        return false;
-    }
 }
