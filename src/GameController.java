@@ -56,10 +56,10 @@ public class GameController {
 
     public GameBoard buildBoard(String path){
         LinkedList<Tile> tiles =new LinkedList<>();
+        LinkedList<Tile> enemies =new LinkedList<>();
         LinkedList<String> lines = readAllLines(path);
         int length = lines.size();
         int width = lines.get(0).length();
-        int enemyCount=0;
         for (int i = 0; i < lines.size() ; i++) {
             String line = lines.get(i);
             for (int j = 0; j < line.length(); j++) {
@@ -70,15 +70,15 @@ public class GameController {
                 tile.setPosition(new Position(j,i));
                 tiles.addLast(tile);
                 if(tile.tile!='.' && tile.tile!='@' && tile.tile!='#'){
-                    enemyCount++;
+                    enemies.addLast(tile);
                 }
             }
         }
-        return new GameBoard(tiles,length,width,enemyCount);
+        return new GameBoard(tiles,length,width,enemies);
     }
 
     public boolean playersAndEnemiesOnTheBoard(GameBoard gameBoard){
-        return (gameBoard.isLivingPlayer() && gameBoard.getEnemiesCount()>0);
+        return (gameBoard.isLivingPlayer() && !gameBoard.getEnemies().isEmpty());
     }
 
     public Character legalStep(String input){
@@ -107,14 +107,14 @@ public class GameController {
                 if (step!=null){
 //                    gameBoard.getTiles().forEach((tile) -> tile.playerTick(step,gameBoard));
                     tileFactory.getSelected().playerTick(step,gameBoard);
-                    gameBoard.getTiles().forEach((tile) -> tile.enemyTick(gameBoard));
+                    gameBoard.getEnemies().forEach((tile) -> tile.enemyTick(gameBoard));
                     tiles = gameBoard.getTiles().stream().sorted(Tile::compareTo)
                             .collect(Collectors.toCollection(LinkedList::new));
                     gameBoard.setTiles(tiles);
                     gameBoard.printGameBoard();
                 }
             }
-            if(gameBoard.isLivingPlayer()){
+            if(!gameBoard.isLivingPlayer()){
                 System.out.println("GAME OVER");//replace with final massage
             }
         }

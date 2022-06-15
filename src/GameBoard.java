@@ -6,13 +6,13 @@ public class GameBoard {
     private int length;
     private int width;
     private LinkedList <Tile> tiles;
-    private int enemiesCount;
+    private LinkedList <Tile> enemies;
     private boolean livingPlayer;
 
-    public GameBoard (LinkedList<Tile> tiles, int length, int width, int enemiesCount)
+    public GameBoard (LinkedList<Tile> tiles, int length, int width, LinkedList<Tile> enemies)
     {
         this.tiles=tiles;
-        this.enemiesCount=enemiesCount;
+        this.enemies=enemies;
         livingPlayer=true;
         this.length=length;
         this.width=width;
@@ -44,17 +44,13 @@ public class GameBoard {
 
     public void removeEnemy(Tile enemy, Player player,boolean specialAbility){
         Tile empty=new Empty(enemy.position);
-        int index = 0;
-        while (!tiles.get(index).equals(enemy)){
-            index++;
-        }
         tiles.remove(enemy);
-        tiles.add(index,empty);
+        tiles.addLast(empty);
 //        enemy = new Empty(enemy.position);
         if (!specialAbility) {
-            replace(enemy, player);
+            replace(empty, player);
         }
-        decreaseEnemyCount();
+        enemies.remove(enemy);
     }
 
     public Tile findEnemy(Player player, int range){
@@ -109,11 +105,11 @@ public class GameBoard {
         this.livingPlayer = livingPlayer;
     }
 
-    public int getEnemiesCount() {
-        return enemiesCount;
+    public LinkedList<Tile> getEnemies() {
+        return enemies;
     }
 
-    public void decreaseEnemyCount(){
-        enemiesCount--;
+    public void setEnemies(LinkedList<Tile> enemies) {
+        this.enemies = enemies;
     }
 }
