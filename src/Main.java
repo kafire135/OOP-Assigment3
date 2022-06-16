@@ -1,10 +1,12 @@
 import java.util.Iterator;
 import java.util.LinkedList;
+import Controller.*;
 
 public class Main {
     public static void main (String [] args){
-    TileFactory tileFactory=new TileFactory();
-    GameController gameController = new GameController(tileFactory, "C:\\Users\\kfir1\\IdeaProjects\\OOP-Assigment3\\levels_dir");
+
+    GameController gameController = new GameController("C:\\Users\\kfir1\\IdeaProjects\\OOP-Assigment3\\levels_dir");
+    gameController.getView().printPlayerList(gameController.getTileFactory().getPlayersList());
     gameController.selectPlayer();
 //    GameBoard gameBoard = gameController.buildBoard(gameController.levels_dir+"\\level"+1+".txt");
 //    gameBoard.printGameBoard();
