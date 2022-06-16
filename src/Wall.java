@@ -25,7 +25,7 @@ public class Wall extends Tile{
     }
 
     @Override
-    public void combatEnemy(Enemy enemy, GameBoard gameBoard) {
+    public void combatEnemy(Enemy enemy, GameBoard gameBoard, boolean special_ability) {
 
     }
 
@@ -33,16 +33,16 @@ public class Wall extends Tile{
     public void SpecialAbility(GameBoard gameBoard) {
 
     }
-
-    @Override
-    public String getSpecialAbility() {
-        return null;
-    }
-
-    @Override
-    public void updateSpecialAbility() {
-
-    }
+//
+//    @Override
+//    public String getSpecialAbility() {
+//        return null;
+//    }
+//
+//    @Override
+//    public void updateSpecialAbility() {
+//
+//    }
 
     @Override
     public void playerTick(char step, GameBoard gameBoard) {

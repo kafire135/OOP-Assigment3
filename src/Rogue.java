@@ -17,6 +17,9 @@ public class Rogue extends Player{
             super.checkLevelUp();
             current_energy = 100;
             attack_points = attack_points + (3*level);
+            if(experience>=50*level){
+                checkLevelUp();
+            }
         }
     }
 

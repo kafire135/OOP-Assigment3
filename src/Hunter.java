@@ -17,6 +17,9 @@ public class Hunter extends Player{
             arrows_count=arrows_count + (10*level);
             attack_points = attack_points + (2 * level);
             defense_points = defense_points + level;
+            if(experience>=50*level){
+                checkLevelUp();
+            }
         }
     }
 

@@ -24,6 +24,9 @@ public class Mage extends Player {
             mana_pool = mana_pool + (25*level);
             current_mana = Math.min(mana_pool, current_mana+ (mana_pool/4));
             spell_power = spell_power + (10*level);
+            if(experience>=50*level){
+                checkLevelUp();
+            }
         }
     }
 

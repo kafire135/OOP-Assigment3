@@ -5,6 +5,5 @@ public class Left implements Step{
         Position newPosition=new Position(tile.position.getX()-1,tile.position.getY());
         Tile moveTo=gameBoard.Search(newPosition);
         tile.moveTo(moveTo, gameBoard);
-        tile.updateSpecialAbility();
     }
 }

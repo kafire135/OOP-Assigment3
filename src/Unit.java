@@ -31,7 +31,7 @@ public abstract class Unit extends Tile{
     public abstract String describe();
     public abstract void combat(Unit unit, GameBoard gameBoard);
     public abstract void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability);
-    public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard);
+    public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard, boolean special_ability);
     public abstract int specialAbilityPower();
     public abstract void SpecialAbility(GameBoard gameBoard);
     public abstract String getSpecialAbility();

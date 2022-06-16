@@ -18,7 +18,7 @@ public class TileFactory {
         players.put(4,new Mage(new Position(0,0),"Thoros of Myr", 250, 25, 4, 150, 20, 20, 3, 4));
         players.put(5,new Rogue(new Position(0,0),"Arya Stark", 150, 40, 2, 20));
         players.put(6,new Rogue(new Position(0,0),"Bronn", 250, 35, 3, 50));
-//                () -> new Hunter("Ygritte", 220, 30, 2, 6)
+        players.put(7,new Hunter(new Position(0,0),"Ygritte", 220, 30, 2, 6));
         return players;
     }
 
@@ -31,9 +31,9 @@ public class TileFactory {
         tiles.put('b',new Monster('b',new Position(0,0), "Bear-Wright", 1000, 75, 30, 250,  4));
         tiles.put('g',new Monster('g',new Position(0,0), "Giant-Wright",1500, 100, 40,500,   5));
         tiles.put('w',new Monster('w',new Position(0,0), "White Walker", 2000, 150, 50, 1000, 6));
-//                () -> new Boss('M', "The Mountain", 1000, 60, 25,  500, 6, 5),
-//                () -> new Boss('C', "Queen Cersei", 100, 10, 10,1000, 1, 8),
-//                () -> new Boss('K', "Night's King", 5000, 300, 150, 5000, 8, 3),
+        tiles.put('M',new Boss('M',new Position(0,0), "The Mountain", 1000, 60, 25,  500, 6, 5));
+        tiles.put('C',new Boss('C',new Position(0,0), "Queen Cersei", 100, 10, 10,1000, 1, 8));
+        tiles.put('K',new Boss('K',new Position(0,0), "Night's King", 5000, 300, 150, 5000, 8, 3));
         tiles.put('B',new Trap('B',new Position(0,0), "Bonus Trap", 1, 1, 1, 250,  1, 10));
         tiles.put('Q',new Trap('Q',new Position(0,0), "Queen's Trap", 250, 50, 10, 100, 3, 10));
         tiles.put('D',new Trap('D',new Position(0,0), "Death Trap", 500, 100, 20, 250, 1, 10));

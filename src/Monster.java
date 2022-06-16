@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class Monster extends Enemy{
 
-    private int vision_range;
+    protected int vision_range;
 
     public Monster(char tile, Position position, String name, int health_pool, int attack_points, int defense_points, int experience, int vision_range) {
         super(tile, position, name, health_pool, attack_points, defense_points, experience);

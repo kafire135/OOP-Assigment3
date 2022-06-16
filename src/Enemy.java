@@ -5,7 +5,7 @@ public abstract class Enemy extends Unit{
     }
 
     public void combat(Unit unit, GameBoard gameBoard){
-        unit.combatEnemy(this, gameBoard);
+        unit.combatEnemy(this, gameBoard,false);
     }
     public void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability){
         Unit.combat(player,this,special_ability);
@@ -15,7 +15,7 @@ public abstract class Enemy extends Unit{
             player.checkLevelUp();
         }
     }
-    public void combatEnemy(Enemy enemy, GameBoard gameBoard){
+    public void combatEnemy(Enemy enemy, GameBoard gameBoard,boolean special_ability){
 
     }
     public void SpecialAbility(GameBoard gameBoard){

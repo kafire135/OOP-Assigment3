@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public abstract class Player extends Unit{
+public abstract class Player extends Unit implements HeroicUnit{
 
     protected int level;
 
@@ -19,6 +19,7 @@ public abstract class Player extends Unit{
         stepHashMap.put('e',new CastSpecialAbility());
         Step step = stepHashMap.get(input);
         step.step(this,gameBoard);
+        updateSpecialAbility();
     }
 
     public int getLevel() {
@@ -43,8 +44,8 @@ public abstract class Player extends Unit{
     public void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability){
 
     }
-    public void combatEnemy(Enemy enemy, GameBoard gameBoard){
-        Unit.combat(enemy,this,false);
+    public void combatEnemy(Enemy enemy, GameBoard gameBoard, boolean special_ability){
+        Unit.combat(enemy,this,special_ability);
         if(health_amount<=0){
             tile='X';//game over
             gameBoard.setLivingPlayer(false);

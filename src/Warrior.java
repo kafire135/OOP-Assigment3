@@ -16,6 +16,9 @@ public class Warrior extends Player{
             health_pool = health_pool + (5 * level);
             attack_points = attack_points + (2 * level);
             defense_points = defense_points + level;
+            if(experience>=50*level){
+                checkLevelUp();
+            }
         }
     }
 

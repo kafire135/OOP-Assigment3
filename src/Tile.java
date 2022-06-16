@@ -35,10 +35,10 @@ public abstract class Tile {
     public abstract void moveFowardMe(Unit unit, GameBoard gameBoard);
     public abstract void combat(Unit unit, GameBoard gameBoard);
     public abstract void combatPlayer(Player player, GameBoard gameBoard, boolean special_ability);
-    public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard);
+    public abstract void combatEnemy(Enemy enemy, GameBoard gameBoard, boolean special_ability);
     public abstract void SpecialAbility(GameBoard gameBoard);
-    public abstract String getSpecialAbility();
-    public abstract void updateSpecialAbility();
+//    public abstract String getSpecialAbility();
+//    public abstract void updateSpecialAbility();
     public abstract void playerTick(char step, GameBoard gameBoard);
     public abstract void enemyTick(GameBoard gameBoard);
     public abstract Tile copy();

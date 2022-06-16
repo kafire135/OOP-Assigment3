@@ -3,6 +3,5 @@ public class Up implements Step{
         Position newPosition=new Position(tile.position.getX(),tile.position.getY()-1);
         Tile moveTo=gameBoard.Search(newPosition);
         tile.moveTo(moveTo, gameBoard);
-        tile.updateSpecialAbility();
     }
 }
